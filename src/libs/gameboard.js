@@ -4,12 +4,12 @@ export default function Gameboard() {
   const board = [];
   const ships = [];
   for (let i = 0; i < 10; i += 1) {
-    board[i] = Array(10).fill(null);
+    board[i] = [];
+    for (let k = 0; k < 10; k += 1) {
+      board[i][k] = { hit: false, ship: null };
+    }
   }
   const getCell = (x, y) => board[x][y];
-
-  const missedAttacks = [];
-  const getLastMissedAttack = () => missedAttacks[missedAttacks.length - 1];
 
   const placeShip = (length, x, y, direction) => {
     if (direction === "horizontal" && x + length > 10) return;
@@ -18,22 +18,22 @@ export default function Gameboard() {
     ships.push(ship);
     if (direction === "vertical") {
       for (let i = 0; i < length; i += 1) {
-        board[x][y + i] = ship;
+        board[x][y + i].ship = ship;
       }
     }
     if (direction === "horizontal") {
       for (let i = 0; i < length; i += 1) {
-        board[x + i][y] = ship;
+        board[x + i][y].ship = ship;
       }
     }
   };
 
   const receiveAttack = (x, y) => {
-    if (board[x][y] === null) {
-      missedAttacks.push([x, y]);
+    if (board[x][y].ship === null) {
+      board[x][y].hit = true;
       return;
     }
-    board[x][y].hit();
+    board[x][y].ship.hit();
   };
 
   const allSunk = () => ships.every((ship) => ship.isSunk());
@@ -42,7 +42,6 @@ export default function Gameboard() {
     getCell,
     placeShip,
     receiveAttack,
-    getLastMissedAttack,
     allSunk,
   };
 }

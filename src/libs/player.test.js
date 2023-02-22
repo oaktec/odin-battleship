@@ -1,3 +1,5 @@
+import { test, expect } from "@jest/globals";
+
 import Player from "./player";
 
 test("player can make a random move", () => {
@@ -15,9 +17,9 @@ test("player can hit opponent's gameboard", () => {
   const gameboard = opponent.getGameboard();
   gameboard.placeShip(3, 0, 0, "horizontal");
   player.attack(opponent, 0, 0);
-  expect(gameboard.getCell(0, 0).isSunk()).toBe(false);
+  expect(gameboard.getCell(0, 0).ship.isSunk()).toBe(false);
   player.attack(opponent, 1, 0);
-  expect(gameboard.getCell(1, 0).isSunk()).toBe(false);
+  expect(gameboard.getCell(1, 0).ship.isSunk()).toBe(false);
   player.attack(opponent, 2, 0);
-  expect(gameboard.getCell(2, 0).isSunk()).toBe(true);
+  expect(gameboard.getCell(2, 0).ship.isSunk()).toBe(true);
 });

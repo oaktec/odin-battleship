@@ -1,3 +1,5 @@
+import { test, expect } from "@jest/globals";
+
 import Ship from "./ship";
 
 test("ship is not sunk when created", () => {
