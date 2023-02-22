@@ -27,12 +27,13 @@ body {
 .gameboard {
   display: grid;
   grid-template-columns: repeat(10, min-content);
+  grid-template-rows: repeat(10, min-content);
 }
 
 .cell {
   height: min(3vw, 6vh);
   width: min(3vw, 6vh);
-  border: 1px solid #555;
+  border: 1px solid #888;
   background-color: #def;
 
   display: flex;
@@ -63,21 +64,21 @@ body {
 }
 .cell.ship-top {
   background-color: #aaa;
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
+  border-top-left-radius: 25%;
+  border-top-right-radius: 25%;
 }
 .cell.ship-bottom {
   background-color: #aaa;
-  border-bottom-left-radius: 50%;
-  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 25%;
+  border-bottom-right-radius: 25%;
 }
 .cell.ship-left {
   background-color: #aaa;
-  border-top-left-radius: 50%;
-  border-bottom-left-radius: 50%;
+  border-top-left-radius: 25%;
+  border-bottom-left-radius: 25%;
 }
 .cell.ship-right {
   background-color: #aaa;
-  border-top-right-radius: 50%;
-  border-bottom-right-radius: 50%;
+  border-top-right-radius: 25%;
+  border-bottom-right-radius: 25%;
 }

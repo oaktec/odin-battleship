@@ -33,10 +33,18 @@ function component() {
       const y = cell.dataset.y;
       if (!p1.attack(p2, x, y)) return;
       p2Board.render(p2.getGameboard(), true);
+      if (p2.getGameboard().allSunk()) {
+        alert("Player 1 Wins!");
+        return;
+      }
+      const randomMove = p2.getRandomMove();
+      p2.attack(p1, randomMove[0], randomMove[1]);
+      p1Board.render(p1.getGameboard());
+      if (p1.getGameboard().allSunk()) {
+        alert("Player 2 Wins!");
+        return;
+      }
     }
-    const randomMove = p2.getRandomMove();
-    p2.attack(p1, randomMove[0], randomMove[1]);
-    p1Board.render(p1.getGameboard());
   });
 
   return content;
