@@ -24,7 +24,7 @@ function component() {
   p2.populateBoardRandomly();
 
   p1Board.render(p1.getGameboard());
-  p2Board.render(p2.getGameboard(), false);
+  p2Board.render(p2.getGameboard(), true);
 
   p2Board.element.addEventListener("click", (e) => {
     const cell = e.target;
@@ -32,7 +32,7 @@ function component() {
       const x = cell.dataset.x;
       const y = cell.dataset.y;
       if (!p1.attack(p2, x, y)) return;
-      p2Board.render(p2.getGameboard(), false);
+      p2Board.render(p2.getGameboard(), true);
     }
     const randomMove = p2.getRandomMove();
     p2.attack(p1, randomMove[0], randomMove[1]);

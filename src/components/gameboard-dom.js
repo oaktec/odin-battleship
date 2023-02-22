@@ -24,7 +24,7 @@ export default function component(name) {
     }
   }
 
-  function render(gameboard, showShips = true) {
+  function render(gameboard, enemyBoard = false) {
     for (let x = 0; x < 10; x++) {
       for (let y = 0; y < 10; y++) {
         const cell = cells[y][x];
@@ -32,15 +32,23 @@ export default function component(name) {
         cell.classList.remove("ship");
         cell.classList.remove("hit");
         cell.classList.remove("miss");
+        cell.classList.remove("valid");
+        cell.classList.remove("invalid");
         cell.textContent = "";
+        if (enemyBoard) {
+          if (!gameboard.getCell(x, y).hit) {
+            cell.classList.add("valid");
+          } else {
+            cell.classList.add("invalid");
+          }
+        }
         if (ship === null) {
-          cell.classList.add("empty");
           if (gameboard.getCell(x, y).hit) {
             cell.classList.add("miss");
             cell.textContent = "•";
           }
         } else {
-          if (showShips) {
+          if (!enemyBoard) {
             cell.classList.add("ship");
             cell.classList.add(`ship-${gameboard.getCell(x, y).display}`);
           }

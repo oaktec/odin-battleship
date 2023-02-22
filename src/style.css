@@ -44,7 +44,18 @@ body {
   background-color: #abc;
 }
 .cell.hit {
-  color: #f00;
+  background-color: #fbc;
+}
+
+.cell.valid,
+.cell.invalid {
+  cursor: pointer;
+}
+.cell.valid:hover {
+  background-color: #7f7;
+}
+.cell.invalid:hover {
+  background-color: #f77;
 }
 
 .cell.ship {
