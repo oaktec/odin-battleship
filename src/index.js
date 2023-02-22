@@ -31,7 +31,7 @@ function component() {
     if (cell.classList.contains("cell")) {
       const x = cell.dataset.x;
       const y = cell.dataset.y;
-      p1.attack(p2, x, y);
+      if (!p1.attack(p2, x, y)) return;
       p2Board.render(p2.getGameboard(), false);
     }
     const randomMove = p2.getRandomMove();
