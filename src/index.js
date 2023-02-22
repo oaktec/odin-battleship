@@ -35,6 +35,9 @@ function component() {
       p1.attack(p2, x, y);
       p2Board.render(p2.getGameboard(), false);
     }
+    const randomMove = p2.getRandomMove();
+    p2.attack(p1, randomMove[0], randomMove[1]);
+    p1Board.render(p1.getGameboard());
   });
 
   return content;
