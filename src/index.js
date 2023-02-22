@@ -1,6 +1,7 @@
 import "./style.css";
 
 import GameboardDOM from "./components/gameboard-dom.js";
+import Player from "./libs/player.js";
 
 function component() {
   const content = document.createElement("div");
@@ -17,7 +18,18 @@ function component() {
 
   content.appendChild(gameboardContainer);
 
+  const p1 = Player();
+  p1.populateBoardRandomly();
+  const p2 = Player();
+  p2.populateBoardRandomly();
+
+  p1Board.render(p1.getGameboard());
+  p2Board.render(p2.getGameboard());
+
   return content;
 }
 
-document.body.appendChild(component());
+(function () {
+  const content = component();
+  document.body.appendChild(content);
+})();
