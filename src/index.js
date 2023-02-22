@@ -3,15 +3,21 @@ import "./style.css";
 import GameboardDOM from "./components/gameboard-dom.js";
 
 function component() {
-  const element = document.createElement("div");
+  const content = document.createElement("div");
+  content.classList.add("content");
 
-  // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = "Hello webpack";
+  const gameboardContainer = document.createElement("div");
+  gameboardContainer.classList.add("gameboards-container");
 
-  const gameboard = GameboardDOM();
-  element.appendChild(gameboard.element);
+  const p1Board = GameboardDOM("Player");
+  gameboardContainer.appendChild(p1Board.element);
 
-  return element;
+  const p2Board = GameboardDOM("Computer");
+  gameboardContainer.appendChild(p2Board.element);
+
+  content.appendChild(gameboardContainer);
+
+  return content;
 }
 
 document.body.appendChild(component());
