@@ -44,11 +44,9 @@ export default function Gameboard() {
 
   const receiveAttack = (x, y) => {
     if (board[x][y].ship === null) {
-      console.log("miss");
       board[x][y].hit = true;
       return;
     }
-    console.log("hit");
     board[x][y].hit = true;
     board[x][y].ship.hit();
   };
