@@ -31,7 +31,6 @@ function component() {
     if (cell.classList.contains("cell")) {
       const x = cell.dataset.x;
       const y = cell.dataset.y;
-      console.log(x, y);
       p1.attack(p2, x, y);
       p2Board.render(p2.getGameboard(), false);
     }

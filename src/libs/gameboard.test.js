@@ -70,3 +70,10 @@ test("allSunk returns false when not all ships are sunk", () => {
   gameboard.receiveAttack(1, 0);
   expect(gameboard.allSunk()).toBe(false);
 });
+
+test("gameboard can populate with random ships", () => {
+  const gameboard = Gameboard();
+  gameboard.populateBoardRandomly();
+  expect(gameboard.allSunk()).toBe(false);
+  expect(gameboard.getShips().length).toBe(5);
+});

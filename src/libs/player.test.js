@@ -23,3 +23,21 @@ test("player can hit opponent's gameboard", () => {
   player.attack(opponent, 2, 0);
   expect(gameboard.getCell(2, 0).ship.isSunk()).toBe(true);
 });
+
+test("player can place a ship on their gameboard", () => {
+  const player = Player();
+  const gameboard = player.getGameboard();
+  player.placeShip(3, 0, 0, "horizontal");
+  expect(gameboard.getCell(0, 0).ship).toBeDefined();
+  expect(gameboard.getCell(1, 0).ship).toBeDefined();
+  expect(gameboard.getCell(2, 0).ship).toBeDefined();
+});
+
+test("player can't attack the same cell twice", () => {
+  const player = Player();
+  const opponent = Player();
+  const gameboard = opponent.getGameboard();
+  gameboard.placeShip(3, 0, 0, "horizontal");
+  player.attack(opponent, 0, 0);
+  expect(player.attack(opponent, 0, 0)).toBe(false);
+});

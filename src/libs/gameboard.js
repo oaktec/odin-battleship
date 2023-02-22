@@ -51,6 +51,26 @@ export default function Gameboard() {
     board[x][y].ship.hit();
   };
 
+  const populateBoardRandomly = () => {
+    const shipLengths = [5, 4, 3, 3, 2];
+    for (let i = 0; i < shipLengths.length; i += 1) {
+      let ret = null;
+      while (ret === null) {
+        let x = Math.floor(Math.random() * 10);
+        let y = Math.floor(Math.random() * 10);
+        while (board[x][y].ship) {
+          x = Math.floor(Math.random() * 10);
+          y = Math.floor(Math.random() * 10);
+        }
+        let direction = Math.random() > 0.5 ? "horizontal" : "vertical";
+        placeShip(shipLengths[i], x, y, direction);
+        ret = board[x][y].ship;
+      }
+    }
+  };
+
+  const getShips = () => ships;
+
   const allSunk = () => ships.every((ship) => ship.isSunk());
 
   return {
@@ -58,5 +78,7 @@ export default function Gameboard() {
     placeShip,
     receiveAttack,
     allSunk,
+    getShips,
+    populateBoardRandomly,
   };
 }
