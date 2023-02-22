@@ -25,7 +25,7 @@ export default function component(name) {
   function render(gameboard) {
     for (let x = 0; x < 10; x++) {
       for (let y = 0; y < 10; y++) {
-        const cell = cells[x][y];
+        const cell = cells[y][x];
         const ship = gameboard.getCell(x, y).ship;
         cell.classList.remove("ship");
         cell.classList.remove("hit");
@@ -37,6 +37,7 @@ export default function component(name) {
           }
         } else {
           cell.classList.add("ship");
+          cell.classList.add(`ship-${gameboard.getCell(x, y).display}`);
           if (gameboard.getCell(x, y).hit) {
             cell.classList.add("hit");
           }
