@@ -17,12 +17,14 @@ export default function component(name) {
     for (let y = 0; y < 10; y++) {
       const cell = document.createElement("div");
       cell.classList.add("cell");
+      cell.dataset.x = y;
+      cell.dataset.y = x;
       cells[x][y] = cell;
       gameboard.appendChild(cell);
     }
   }
 
-  function render(gameboard) {
+  function render(gameboard, showShips = true) {
     for (let x = 0; x < 10; x++) {
       for (let y = 0; y < 10; y++) {
         const cell = cells[y][x];
@@ -30,16 +32,21 @@ export default function component(name) {
         cell.classList.remove("ship");
         cell.classList.remove("hit");
         cell.classList.remove("miss");
+        cell.textContent = "";
         if (ship === null) {
           cell.classList.add("empty");
           if (gameboard.getCell(x, y).hit) {
             cell.classList.add("miss");
+            cell.textContent = "•";
           }
         } else {
-          cell.classList.add("ship");
-          cell.classList.add(`ship-${gameboard.getCell(x, y).display}`);
+          if (showShips) {
+            cell.classList.add("ship");
+            cell.classList.add(`ship-${gameboard.getCell(x, y).display}`);
+          }
           if (gameboard.getCell(x, y).hit) {
             cell.classList.add("hit");
+            cell.textContent = "💥";
           }
         }
       }

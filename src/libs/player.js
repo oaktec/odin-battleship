@@ -17,7 +17,6 @@ export default function Player() {
   const populateBoardRandomly = () => {
     const shipLengths = [5, 4, 3, 3, 2];
     for (let i = 0; i < shipLengths.length; i += 1) {
-      console.log(`Placing ship of length ${shipLengths[i]}`);
       let ret = null;
       while (ret === null) {
         let x = Math.floor(Math.random() * 10);
@@ -27,10 +26,8 @@ export default function Player() {
           y = Math.floor(Math.random() * 10);
         }
         let direction = Math.random() > 0.5 ? "horizontal" : "vertical";
-        console.log(`Trying to place ship at ${x}, ${y} ${direction}`);
         gameboard.placeShip(shipLengths[i], x, y, direction);
         ret = gameboard.getCell(x, y).ship;
-        console.log(`object: ${ret}`);
       }
     }
   };

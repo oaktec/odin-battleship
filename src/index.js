@@ -24,7 +24,18 @@ function component() {
   p2.populateBoardRandomly();
 
   p1Board.render(p1.getGameboard());
-  p2Board.render(p2.getGameboard());
+  p2Board.render(p2.getGameboard(), false);
+
+  p2Board.element.addEventListener("click", (e) => {
+    const cell = e.target;
+    if (cell.classList.contains("cell")) {
+      const x = cell.dataset.x;
+      const y = cell.dataset.y;
+      console.log(x, y);
+      p1.attack(p2, x, y);
+      p2Board.render(p2.getGameboard(), false);
+    }
+  });
 
   return content;
 }
