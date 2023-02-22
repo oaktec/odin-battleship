@@ -41,3 +41,11 @@ test("player can't attack the same cell twice", () => {
   player.attack(opponent, 0, 0);
   expect(player.attack(opponent, 0, 0)).toBe(false);
 });
+
+test("attacking a cell that hasn't been attacked returns true", () => {
+  const player = Player();
+  const opponent = Player();
+  const gameboard = opponent.getGameboard();
+  gameboard.placeShip(3, 0, 0, "horizontal");
+  expect(player.attack(opponent, 0, 0)).toBe(true);
+});
