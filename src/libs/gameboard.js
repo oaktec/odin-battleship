@@ -42,6 +42,37 @@ export default function Gameboard() {
     }
   };
 
+  const shipLocationCheck = (length, x, y, direction) => {
+    // check if ship can be placed and return array of boolean values for each cell
+    const ret = [];
+
+    let currX = x;
+    let currY = y;
+
+    for (let i = 0; i < length; i += 1) {
+      if (currX > 9 || currY > 9) {
+        ret.push(false);
+        continue;
+      }
+
+      if (board[currX][currY].ship) {
+        ret.push(false);
+        continue;
+      }
+
+      if (direction === "horizontal") {
+        currX += 1;
+      } else {
+        currY += 1;
+      }
+      ret.push(true);
+    }
+
+    console.log(ret);
+
+    return ret;
+  };
+
   const receiveAttack = (x, y) => {
     if (board[x][y].ship === null) {
       board[x][y].hit = true;
@@ -80,5 +111,6 @@ export default function Gameboard() {
     allSunk,
     getShips,
     populateBoardRandomly,
+    shipLocationCheck,
   };
 }

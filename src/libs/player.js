@@ -13,6 +13,9 @@ export default function Player() {
     opponent.getGameboard().receiveAttack(x, y);
     return true;
   };
+  const shipLocationCheck = (length, x, y, direction) => {
+    return gameboard.shipLocationCheck(length, x, y, direction);
+  };
   const placeShip = (length, x, y, direction) => {
     gameboard.placeShip(length, x, y, direction);
   };
@@ -25,5 +28,6 @@ export default function Player() {
     attack,
     placeShip,
     populateBoardRandomly,
+    shipLocationCheck,
   };
 }

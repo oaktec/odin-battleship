@@ -13,7 +13,8 @@ body {
   gap: min(6vw, 12vh);
 }
 
-.gameboard-wrapper {
+.gameboard-wrapper,
+.ship-dropper-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,10 +25,37 @@ body {
   border-radius: 0.5rem;
 }
 
+.ship-dropper-wrapper {
+  font-size: 1.6rem;
+}
+
+.ship-dropper-board {
+  display: flex;
+  flex-direction: column;
+  gap: min(1vw, 2vh);
+  justify-content: center;
+  align-items: flex-start;
+}
 .gameboard {
   display: grid;
   grid-template-columns: repeat(10, min-content);
   grid-template-rows: repeat(10, min-content);
+}
+
+.draggable-ship {
+  cursor: grab;
+  display: flex;
+}
+.draggable-cell {
+  height: min(3vw, 6vh);
+  width: min(3vw, 6vh);
+  border: 1px solid #888;
+  background-color: #def;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: min(2vw, 4vh);
 }
 
 .cell {
@@ -81,4 +109,11 @@ body {
   background-color: #666;
   border-top-right-radius: 25%;
   border-bottom-right-radius: 25%;
+}
+
+.cell.valid-drop {
+  background-color: #7f7;
+}
+.cell.invalid-drop {
+  background-color: #f77;
 }
