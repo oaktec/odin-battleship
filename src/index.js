@@ -2,7 +2,7 @@ import "./style.css";
 
 import GameboardDOM from "./components/gameboard-dom.js";
 import ShipDropperDOM from "./components/ship-dropper-dom.js";
-import Player from "./libs/player.js";
+import Player, { MediumPlayer } from "./libs/player.js";
 
 function component() {
   const content = document.createElement("div");
@@ -36,7 +36,12 @@ function component() {
       const p2Board = GameboardDOM(`Computer (${difficulty})`);
       gameboardContainer.appendChild(p2Board.element);
 
-      const p2 = Player();
+      const p2 =
+        difficulty === "easy"
+          ? Player()
+          : difficulty === "medium"
+          ? MediumPlayer()
+          : HardPlayer();
 
       p2.populateBoardRandomly();
 
