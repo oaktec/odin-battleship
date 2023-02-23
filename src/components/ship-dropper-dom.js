@@ -2,7 +2,8 @@ export default function component(
   startGameFn,
   placeShipFn,
   shipLocationCheckFn,
-  renderFn
+  renderFn,
+  setDifficultyFn
 ) {
   const element = document.createElement("div");
   element.classList.add("ship-dropper-wrapper");
@@ -158,6 +159,70 @@ export default function component(
     document.querySelector(".ship-dropper-board").classList.toggle("vertical");
   });
   element.appendChild(rotateButton);
+
+  const difficultyLabel = document.createElement("div");
+  difficultyLabel.classList.add("difficulty-label");
+  difficultyLabel.textContent = "Difficulty:";
+  element.appendChild(difficultyLabel);
+
+  const difficultyOptions = document.createElement("div");
+  difficultyOptions.classList.add("difficulty-options");
+  element.appendChild(difficultyOptions);
+
+  const easySection = document.createElement("div");
+  easySection.classList.add("difficulty-section");
+  difficultyOptions.appendChild(easySection);
+
+  const easyLabel = document.createElement("div");
+  easyLabel.classList.add("difficulty-label");
+  easyLabel.textContent = "Easy";
+  easySection.appendChild(easyLabel);
+
+  const easyRadio = document.createElement("input");
+  easyRadio.setAttribute("type", "radio");
+  easyRadio.setAttribute("name", "difficulty");
+  easyRadio.setAttribute("value", "easy");
+  easyRadio.setAttribute("checked", "true");
+  easyRadio.addEventListener("click", (e) => {
+    setDifficultyFn("easy");
+  });
+  easySection.appendChild(easyRadio);
+
+  const mediumSection = document.createElement("div");
+  mediumSection.classList.add("difficulty-section");
+  difficultyOptions.appendChild(mediumSection);
+
+  const mediumLabel = document.createElement("div");
+  mediumLabel.classList.add("difficulty-label");
+  mediumLabel.textContent = "Medium";
+  mediumSection.appendChild(mediumLabel);
+
+  const mediumRadio = document.createElement("input");
+  mediumRadio.setAttribute("type", "radio");
+  mediumRadio.setAttribute("name", "difficulty");
+  mediumRadio.setAttribute("value", "medium");
+  mediumRadio.addEventListener("click", (e) => {
+    setDifficultyFn("medium");
+  });
+  mediumSection.appendChild(mediumRadio);
+
+  const hardSection = document.createElement("div");
+  hardSection.classList.add("difficulty-section");
+  difficultyOptions.appendChild(hardSection);
+
+  const hardLabel = document.createElement("div");
+  hardLabel.classList.add("difficulty-label");
+  hardLabel.textContent = "Hard";
+  hardSection.appendChild(hardLabel);
+
+  const hardRadio = document.createElement("input");
+  hardRadio.setAttribute("type", "radio");
+  hardRadio.setAttribute("name", "difficulty");
+  hardRadio.setAttribute("value", "hard");
+  hardRadio.addEventListener("click", (e) => {
+    setDifficultyFn("hard");
+  });
+  hardSection.appendChild(hardRadio);
 
   function getCellOver(x, y) {
     const cell = document.elementFromPoint(x, y);

@@ -3,7 +3,7 @@ import Gameboard from "./gameboard.js";
 export default function Player() {
   const gameboard = Gameboard();
   const getGameboard = () => gameboard;
-  const getRandomMove = () => {
+  const getMove = () => {
     const x = Math.floor(Math.random() * 10);
     const y = Math.floor(Math.random() * 10);
     return [x, y];
@@ -24,10 +24,22 @@ export default function Player() {
   };
   return {
     getGameboard,
-    getRandomMove,
+    getMove,
     attack,
     placeShip,
     populateBoardRandomly,
     shipLocationCheck,
+  };
+}
+
+export function MediumPlayer() {
+  const getMove = () => {
+    const x = Math.floor(Math.random() * 10);
+    const y = Math.floor(Math.random() * 10);
+    return [x, y];
+  };
+  return {
+    ...Player(),
+    getMove,
   };
 }

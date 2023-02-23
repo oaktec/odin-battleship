@@ -26,7 +26,12 @@ body {
 }
 
 .ship-dropper-wrapper {
+  height: min(35vw, 70vh);
   font-size: 1.6rem;
+}
+
+.difficulty-label {
+  margin-top: auto;
 }
 
 .ship-dropper-board {
@@ -39,10 +44,32 @@ body {
 .ship-dropper-board.vertical {
   flex-direction: row;
 }
+
+.difficulty-options {
+  display: flex;
+  gap: 16px;
+}
+
+.difficulty-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 1.4rem;
+}
+
 .gameboard {
   display: grid;
   grid-template-columns: repeat(10, min-content);
   grid-template-rows: repeat(10, min-content);
+}
+
+.rotate-button {
+  font-size: 1.4rem;
+  padding: 4px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #def;
 }
 
 .draggable-ship {

@@ -20,22 +20,24 @@ function component() {
     gameboardContainer.appendChild(p1Board.element);
     const p1 = Player();
 
+    let difficulty = "easy";
+
     const shipDropper = ShipDropperDOM(
       playGame,
       p1.placeShip,
       p1.shipLocationCheck,
-      () => p1Board.render(p1.getGameboard())
+      () => p1Board.render(p1.getGameboard()),
+      (x) => (difficulty = x)
     );
     gameboardContainer.appendChild(shipDropper);
 
     function playGame() {
       gameboardContainer.removeChild(shipDropper);
-      const p2Board = GameboardDOM("Computer");
+      const p2Board = GameboardDOM(`Computer (${difficulty})`);
       gameboardContainer.appendChild(p2Board.element);
 
       const p2 = Player();
 
-      // p1.populateBoardRandomly();
       p2.populateBoardRandomly();
 
       p1Board.render(p1.getGameboard());
@@ -52,8 +54,8 @@ function component() {
             gameOver("Player");
             return;
           }
-          const randomMove = p2.getRandomMove();
-          p2.attack(p1, randomMove[0], randomMove[1]);
+          const computerMove = p2.getMove();
+          p2.attack(p1, computerMove[0], computerMove[1]);
           p1Board.render(p1.getGameboard());
           if (p1.getGameboard().allSunk()) {
             gameOver("Computer");
