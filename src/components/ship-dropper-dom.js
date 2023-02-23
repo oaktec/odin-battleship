@@ -1,4 +1,9 @@
-export default function component(startGameFn, shipLocationCheckFn) {
+export default function component(
+  startGameFn,
+  placeShipFn,
+  shipLocationCheckFn,
+  renderFn
+) {
   const element = document.createElement("div");
   element.classList.add("ship-dropper-wrapper");
   const shipDropperLabel = document.createElement("div");
@@ -16,6 +21,8 @@ export default function component(startGameFn, shipLocationCheckFn) {
   let cellClicked;
   let shipDirection = "horizontal";
   let cellsArr;
+
+  let shipCoords = [];
 
   for (let i = 0; i < shipLengths.length; i++) {
     const ship = document.createElement("div");
@@ -41,10 +48,12 @@ export default function component(startGameFn, shipLocationCheckFn) {
     });
 
     ship.addEventListener("drag", (e) => {
+      console.log("dragging");
       for (let i = 0; i < cellsArr.length; i++) {
         cellsArr[i].classList.remove("valid-drop");
         cellsArr[i].classList.remove("invalid-drop");
       }
+      if (e.screenX === 0) return;
       let cell = getCellOver(e.clientX, e.clientY);
       if (cell) {
         // get the index of the cell
@@ -89,19 +98,46 @@ export default function component(startGameFn, shipLocationCheckFn) {
           }
           boardCells.push(cellsArr[x + y * 10]);
         }
-
+        let validPos = true;
         for (let i = 0; i < cellsValid.length; i++) {
           let currCell = boardCells[i];
 
-          if (!currCell) continue;
+          if (!currCell) {
+            validPos = false;
+            continue;
+          }
 
           if (cellsValid[i]) {
             currCell.classList.add("valid-drop");
           } else {
             currCell.classList.add("invalid-drop");
+            validPos = false;
           }
         }
+        if (validPos) {
+          shipCoords = [coord[0], coord[1]];
+          console.log("drag good");
+        } else {
+          shipCoords = [];
+          console.log("drag bad");
+        }
+      } else {
+        shipCoords = [];
+        console.log("drag bad no cell");
       }
+      e.preventDefault();
+    });
+
+    ship.addEventListener("dragend", (e) => {
+      e.preventDefault();
+
+      console.log("drag end");
+      if (shipCoords.length === 0) {
+        return;
+      }
+      placeShipFn(shipClicked, shipCoords[0], shipCoords[1], shipDirection);
+      ship.remove();
+      renderFn();
       e.preventDefault();
     });
   }

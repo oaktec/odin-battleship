@@ -20,7 +20,12 @@ function component() {
     gameboardContainer.appendChild(p1Board.element);
     const p1 = Player();
 
-    const shipDropper = ShipDropperDOM(playGame, p1.shipLocationCheck);
+    const shipDropper = ShipDropperDOM(
+      playGame,
+      p1.placeShip,
+      p1.shipLocationCheck,
+      () => p1Board.render(p1.getGameboard())
+    );
     gameboardContainer.appendChild(shipDropper);
 
     function playGame() {
