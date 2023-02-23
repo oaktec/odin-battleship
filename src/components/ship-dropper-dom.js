@@ -138,7 +138,10 @@ export default function component(
       }
       placeShipFn(shipClicked, shipCoords[0], shipCoords[1], shipDirection);
       ship.remove();
+      ships.splice(ships.indexOf(ship), 1);
       renderFn();
+      if (ships.length === 0) startGameFn();
+
       e.preventDefault();
     });
   }

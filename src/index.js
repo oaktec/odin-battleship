@@ -29,7 +29,7 @@ function component() {
     gameboardContainer.appendChild(shipDropper);
 
     function playGame() {
-      gameboardContainer.removeChild(shipDropper.element);
+      gameboardContainer.removeChild(shipDropper);
       const p2Board = GameboardDOM("Computer");
       gameboardContainer.appendChild(p2Board.element);
 
