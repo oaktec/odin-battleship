@@ -39,6 +39,7 @@ export default function component(
 
       ship.appendChild(cell);
     }
+    ships.push(ship);
 
     shipDropperBoard.appendChild(ship);
 
@@ -141,6 +142,19 @@ export default function component(
       e.preventDefault();
     });
   }
+
+  const rotateButton = document.createElement("button");
+  rotateButton.classList.add("rotate-button");
+  rotateButton.textContent = "Rotate";
+  rotateButton.addEventListener("click", (e) => {
+    let newDir = shipDirection === "horizontal" ? "vertical" : "horizontal";
+    shipDirection = newDir;
+    for (let i = 0; i < ships.length; i += 1) {
+      ships[i].classList.toggle("vertical");
+    }
+    document.querySelector(".ship-dropper-board").classList.toggle("vertical");
+  });
+  element.appendChild(rotateButton);
 
   function getCellOver(x, y) {
     const cell = document.elementFromPoint(x, y);

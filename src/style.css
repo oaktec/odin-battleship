@@ -36,6 +36,9 @@ body {
   justify-content: center;
   align-items: flex-start;
 }
+.ship-dropper-board.vertical {
+  flex-direction: row;
+}
 .gameboard {
   display: grid;
   grid-template-columns: repeat(10, min-content);
@@ -45,6 +48,9 @@ body {
 .draggable-ship {
   cursor: grab;
   display: flex;
+}
+.draggable-ship.vertical {
+  flex-direction: column;
 }
 .draggable-cell {
   height: min(3vw, 6vh);
