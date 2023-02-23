@@ -60,25 +60,25 @@ body {
 }
 
 .cell.ship {
-  background-color: #aaa;
+  background-color: #666;
 }
 .cell.ship-top {
-  background-color: #aaa;
+  background-color: #666;
   border-top-left-radius: 25%;
   border-top-right-radius: 25%;
 }
 .cell.ship-bottom {
-  background-color: #aaa;
+  background-color: #666;
   border-bottom-left-radius: 25%;
   border-bottom-right-radius: 25%;
 }
 .cell.ship-left {
-  background-color: #aaa;
+  background-color: #666;
   border-top-left-radius: 25%;
   border-bottom-left-radius: 25%;
 }
 .cell.ship-right {
-  background-color: #aaa;
+  background-color: #666;
   border-top-right-radius: 25%;
   border-bottom-right-radius: 25%;
 }
