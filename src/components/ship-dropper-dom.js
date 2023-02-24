@@ -50,7 +50,6 @@ export default function component(
     });
 
     ship.addEventListener("drag", (e) => {
-      console.log("dragging");
       for (let i = 0; i < cellsArr.length; i++) {
         cellsArr[i].classList.remove("valid-drop");
         cellsArr[i].classList.remove("invalid-drop");
@@ -94,7 +93,7 @@ export default function component(
           } else {
             y += i;
           }
-          if (x > 9 || y > 9) {
+          if (x > 10 || y > 10) {
             boardCells.push(null);
             continue;
           }
@@ -118,14 +117,11 @@ export default function component(
         }
         if (validPos) {
           shipCoords = [coord[0], coord[1]];
-          console.log("drag good");
         } else {
           shipCoords = [];
-          console.log("drag bad");
         }
       } else {
         shipCoords = [];
-        console.log("drag bad no cell");
       }
       e.preventDefault();
     });
@@ -133,7 +129,6 @@ export default function component(
     ship.addEventListener("dragend", (e) => {
       e.preventDefault();
 
-      console.log("drag end");
       if (shipCoords.length === 0) {
         return;
       }

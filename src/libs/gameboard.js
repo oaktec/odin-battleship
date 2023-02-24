@@ -67,9 +67,6 @@ export default function Gameboard() {
       }
       ret.push(true);
     }
-
-    console.log(ret);
-
     return ret;
   };
 

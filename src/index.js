@@ -2,7 +2,7 @@ import "./style.css";
 
 import GameboardDOM from "./components/gameboard-dom.js";
 import ShipDropperDOM from "./components/ship-dropper-dom.js";
-import Player, { MediumPlayer } from "./libs/player.js";
+import Player, { MediumPlayer, HardPlayer } from "./libs/player.js";
 
 function component() {
   const content = document.createElement("div");
